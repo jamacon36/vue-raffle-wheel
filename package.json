@@ -36,5 +36,8 @@
     "roulette"
   ],
   "author": "James Macon https://github.com/jamacon36/",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.9.0"
+  }
 }

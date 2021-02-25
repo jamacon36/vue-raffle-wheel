@@ -5,6 +5,13 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var script = {
   name: "RaffleWheel",
@@ -21,7 +28,18 @@ var script = {
   props: {
     options: Array,
     blockSpin: Boolean,
-    startAngle: Number,
+    startAngle: {
+      type: Number,
+      default: 0,
+    },
+    canvasWidth: {
+      type: Number,
+      default: 500,
+    },
+    canvasHeight: {
+      type: Number,
+      default: 500,
+    },
   },
   methods: {
     byte2Hex: function byte2Hex(n) {
@@ -144,6 +162,11 @@ var script = {
       return b + c * (tc + -3 * ts + 3 * t);
     },
   },
+  watch: {
+    startAngle: function startAngle() {
+      this.start = this.startAngle;
+    },
+  },
   mounted: function mounted() {
     this.start = this.startAngle;
     this.arc = Math.PI / (this.options.length / 2);
@@ -237,11 +260,19 @@ var __vue_render__ = function() {
   return _c("div", { staticClass: "raffle-wheel" }, [
     _c(
       "button",
-      { attrs: { disabled: _vm.blockSpin }, on: { click: _vm.spin } },
-      [_vm._v("Spin")]
+      {
+        staticClass: "raffle-wheel__button",
+        attrs: { disabled: _vm.blockSpin },
+        on: { click: _vm.spin }
+      },
+      [_vm._v("\n    Spin\n  ")]
     ),
     _vm._v(" "),
-    _c("canvas", { ref: "wheel", attrs: { width: "500", height: "500" } })
+    _c("canvas", {
+      ref: "wheel",
+      staticClass: "raffle-wheel__canvas",
+      attrs: { width: _vm.canvasWidth, height: _vm.canvasHeight }
+    })
   ])
 };
 var __vue_staticRenderFns__ = [];

@@ -48,11 +48,13 @@ export default {
 
 ## Available Props
 
-| Prop       | Type    | Description                                                              | Required |
-| ---------- | ------- | ------------------------------------------------------------------------ | -------- |
-| options    | Array   | An array of values to appear in the slices of the wheel.                 | \*       |
-| blockSpin  | Boolean | Used to disable the spin button.                                         |          |
-| startAngle | Number  | Set the degrees to which the wheel is initially rotated. (Defaults to 0) |          |
+| Prop         | Type    | Description                                              | Default Value | Required |
+| ------------ | ------- | -------------------------------------------------------- | ------------- | -------- |
+| options      | Array   | An array of values to appear in the slices of the wheel. | []            | \*       |
+| blockSpin    | Boolean | Used to disable the spin button.                         | false         |          |
+| startAngle   | Number  | Set the degrees to which the wheel is initially rotated. | 0             |          |
+| canvasWidth  | Number  | Set the width of the canvas element. (Defaults to 500)   | 500           |          |
+| canvasHeight | Number  | Set the height of the canvas element. (Defaults to 500)  | 500           |          |
 
 ## Available Events
 

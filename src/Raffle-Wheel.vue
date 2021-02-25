@@ -6,8 +6,8 @@
     <canvas
       class="raffle-wheel__canvas"
       ref="wheel"
-      width="500"
-      height="500"
+      :width="canvasWidth"
+      :height="canvasHeight"
     ></canvas>
   </div>
 </template>
@@ -31,6 +31,14 @@ export default {
     startAngle: {
       type: Number,
       default: 0,
+    },
+    canvasWidth: {
+      type: Number,
+      default: 500,
+    },
+    canvasHeight: {
+      type: Number,
+      default: 500,
     },
   },
   methods: {
@@ -152,6 +160,11 @@ export default {
       const ts = (t /= d) * t;
       const tc = ts * t;
       return b + c * (tc + -3 * ts + 3 * t);
+    },
+  },
+  watch: {
+    startAngle() {
+      this.start = this.startAngle;
     },
   },
   mounted() {
