@@ -1,5 +1,5 @@
 // Import vue component
-import RaffleWheel from "./Raffle-Wheel.vue";
+import RaffleWheel from "./raffle-wheel.vue";
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {

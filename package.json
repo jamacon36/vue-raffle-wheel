@@ -6,17 +6,17 @@
     "type": "git",
     "url": "https://github.com/jamacon36/vue-raffle-wheel.git"
   },
-  "main": "dist/Raffle-Wheel.umd.js",
-  "module": "dist/Raffle-Wheel.esm.js",
-  "unpkg": "dist/Raffle-Wheel.min.js",
+  "main": "dist/raffle-wheel.umd.js",
+  "module": "dist/raffle-wheel.esm.js",
+  "unpkg": "dist/raffle-wheel.min.js",
   "browser": {
-    "./sfc": "src/Raffle-Wheel.vue"
+    "./sfc": "src/raffle-wheel.vue"
   },
   "scripts": {
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/my-component.umd.js",
-    "build:es": "rollup --config build/rollup.config.js --format es --file dist/my-component.esm.js",
-    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/raffle-wheel.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/raffle-wheel.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/raffle-wheel.min.js"
   },
   "devDependencies": {
     "rollup": "^1.17.0",
