@@ -1,7 +1,14 @@
 <template>
   <div class="raffle-wheel">
-    <button @click="spin" :disabled="blockSpin">Spin</button>
-    <canvas ref="wheel" width="500" height="500"></canvas>
+    <button class="raffle-wheel__button" @click="spin" :disabled="blockSpin">
+      Spin
+    </button>
+    <canvas
+      class="raffle-wheel__canvas"
+      ref="wheel"
+      width="500"
+      height="500"
+    ></canvas>
   </div>
 </template>
 
@@ -21,7 +28,10 @@ export default {
   props: {
     options: Array,
     blockSpin: Boolean,
-    startAngle: Number,
+    startAngle: {
+      type: Number,
+      default: 0,
+    },
   },
   methods: {
     byte2Hex(n) {

@@ -1,6 +1,7 @@
 {
   "name": "vue-raffle-wheel",
   "version": "1.0.0",
+  "homepage": "https://github.com/jamacon36/vue-raffle-wheel.git#readme",
   "description": "A raffle wheel component based on Barney Parker's codepen: https://codepen.io/barney-parker/pen/OPyYqy",
   "repository": {
     "type": "git",
@@ -26,7 +27,14 @@
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vue",
+    "raffle",
+    "wheel",
+    "vue-raffle-wheel",
+    "lottery",
+    "roulette"
+  ],
+  "author": "James Macon https://github.com/jamacon36/",
   "license": "ISC"
 }
