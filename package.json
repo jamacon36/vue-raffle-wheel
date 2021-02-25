@@ -1,0 +1,32 @@
+{
+  "name": "vue-raffle-wheel",
+  "version": "1.0.0",
+  "description": "A raffle wheel component based on Barney Parker's codepen: https://codepen.io/barney-parker/pen/OPyYqy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamacon36/vue-raffle-wheel.git"
+  },
+  "main": "dist/Raffle-Wheel.umd.js",
+  "module": "dist/Raffle-Wheel.esm.js",
+  "unpkg": "dist/Raffle-Wheel.min.js",
+  "browser": {
+    "./sfc": "src/Raffle-Wheel.vue"
+  },
+  "scripts": {
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/my-component.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/my-component.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/my-component.min.js"
+  },
+  "devDependencies": {
+    "rollup": "^1.17.0",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "rollup-plugin-vue": "^5.0.1",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
