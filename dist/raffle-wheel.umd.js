@@ -34,6 +34,22 @@
     props: {
       options: Array,
       blockSpin: Boolean,
+      slicesFont: {
+        type: Object,
+        default: {
+          style: "bold",
+          size: "12px",
+          family: "Helvetica, Arial",
+        },
+      },
+      hubFont: {
+        type: Object,
+        default: {
+          style: "bold",
+          size: "30px",
+          family: "Helvetica, Arial",
+        },
+      },
       startAngle: {
         type: Number,
         default: 0,
@@ -70,6 +86,9 @@
 
         return this.RGB2Color(red, green, blue);
       },
+      getOptionText: function getOptionText(option) {
+        return option.text ? option.text : option;
+      },
       drawRouletteWheel: function drawRouletteWheel() {
         var canvas = this.$refs["wheel"];
         if (canvas.getContext) {
@@ -83,13 +102,13 @@
           this.ctx.strokeStyle = "black";
           this.ctx.lineWidth = 2;
 
-          this.ctx.font = "bold 12px Helvetica, Arial";
+          this.ctx.font = (this.slicesFont.style) + " " + (this.slicesFont.size) + " " + (this.slicesFont.family);
 
           for (var i = 0; i < this.options.length; i++) {
             var angle = this.start + i * this.arc;
-            //this.ctx.fillStyle = colors[i];
-            this.ctx.fillStyle = this.getColor(i, this.options.length);
-
+            this.ctx.fillStyle = this.options[i].color
+              ? this.options[i].color
+              : this.getColor(i, this.options.length);
             this.ctx.beginPath();
             this.ctx.arc(250, 250, outsideRadius, angle, angle + this.arc, false);
             this.ctx.arc(250, 250, insideRadius, angle + this.arc, angle, true);
@@ -107,7 +126,7 @@
               250 + Math.sin(angle + this.arc / 2) * textRadius
             );
             this.ctx.rotate(angle + this.arc / 2 + Math.PI / 2);
-            var text = this.options[i];
+            var text = this.getOptionText(this.options[i]);
             this.ctx.fillText(text, -this.ctx.measureText(text).width / 2, 0);
             this.ctx.restore();
           }
@@ -152,8 +171,8 @@
         var arcd = (this.arc * 180) / Math.PI;
         var index = Math.floor((360 - (degrees % 360)) / arcd);
         this.ctx.save();
-        this.ctx.font = "bold 30px Helvetica, Arial";
-        var text = this.options[index];
+        this.ctx.font = (this.hubFont.style) + " " + (this.hubFont.size) + " " + (this.hubFont.family);
+        var text = this.getOptionText(this.options[index]);
         this.ctx.fillText(
           text,
           250 - this.ctx.measureText(text).width / 2,

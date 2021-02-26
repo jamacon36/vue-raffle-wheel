@@ -1,6 +1,6 @@
 {
   "name": "vue-raffle-wheel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/jamacon36/vue-raffle-wheel.git#readme",
   "description": "A raffle wheel component based on Barney Parker's codepen: https://codepen.io/barney-parker/pen/OPyYqy",
   "repository": {
