@@ -86,8 +86,29 @@
 
         return this.RGB2Color(red, green, blue);
       },
-      getOptionText: function getOptionText(option) {
-        return option.text ? option.text : option;
+      getOptionText: function getOptionText(optionIndex) {
+        return this.options[optionIndex].text
+          ? this.options[optionIndex].text
+          : this.options[optionIndex];
+      },
+      getOptionSliceColor: function getOptionSliceColor(optionIndex) {
+        if (this.options[optionIndex].color)
+          { return this.options[optionIndex].color; }
+        return this.getColor(optionIndex, this.options.length);
+      },
+      getOptionTextColor: function getOptionTextColor(optionIndex) {
+        if (this.options[optionIndex].fontColor)
+          { return this.options[optionIndex].fontColor; }
+        if (this.slicesFont.color) { return this.slicesFont.color; }
+        return "black";
+      },
+      getHubTextColor: function getHubTextColor(optionIndex) {
+        if (!this.hubFont.color) { return "black"; }
+        if (this.hubFont.color === "use-slice" && this.slicesFont.color)
+          { return this.slicesFont.color; }
+        if (this.hubFont.color === "use-option")
+          { return this.getOptionTextColor(optionIndex); }
+        return this.hubFont.color;
       },
       drawRouletteWheel: function drawRouletteWheel() {
         var canvas = this.$refs["wheel"];
@@ -99,16 +120,14 @@
           this.ctx = canvas.getContext("2d");
           this.ctx.clearRect(0, 0, 500, 500);
 
-          this.ctx.strokeStyle = "black";
+          this.ctx.strokeStyle = this.slicesFont.color;
           this.ctx.lineWidth = 2;
 
           this.ctx.font = (this.slicesFont.style) + " " + (this.slicesFont.size) + " " + (this.slicesFont.family);
 
           for (var i = 0; i < this.options.length; i++) {
             var angle = this.start + i * this.arc;
-            this.ctx.fillStyle = this.options[i].color
-              ? this.options[i].color
-              : this.getColor(i, this.options.length);
+            this.ctx.fillStyle = this.getOptionSliceColor(i);
             this.ctx.beginPath();
             this.ctx.arc(250, 250, outsideRadius, angle, angle + this.arc, false);
             this.ctx.arc(250, 250, insideRadius, angle + this.arc, angle, true);
@@ -120,13 +139,13 @@
             this.ctx.shadowOffsetY = -1;
             this.ctx.shadowBlur = 0;
             this.ctx.shadowColor = "rgb(220,220,220)";
-            this.ctx.fillStyle = "black";
+            this.ctx.fillStyle = this.getOptionTextColor(i);
             this.ctx.translate(
               250 + Math.cos(angle + this.arc / 2) * textRadius,
               250 + Math.sin(angle + this.arc / 2) * textRadius
             );
             this.ctx.rotate(angle + this.arc / 2 + Math.PI / 2);
-            var text = this.getOptionText(this.options[i]);
+            var text = this.getOptionText(i);
             this.ctx.fillText(text, -this.ctx.measureText(text).width / 2, 0);
             this.ctx.restore();
           }
@@ -172,7 +191,8 @@
         var index = Math.floor((360 - (degrees % 360)) / arcd);
         this.ctx.save();
         this.ctx.font = (this.hubFont.style) + " " + (this.hubFont.size) + " " + (this.hubFont.family);
-        var text = this.getOptionText(this.options[index]);
+        var text = this.getOptionText(index);
+        this.ctx.fillStyle = this.getHubTextColor(index);
         this.ctx.fillText(
           text,
           250 - this.ctx.measureText(text).width / 2,
