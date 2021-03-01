@@ -78,6 +78,6 @@ Slices will first look for a `fontColor` value in the corresponding options obje
 #### Hub
 
 - The hub (center of the wheel) will first look for a `color` value in the `hubFont` prop.
-  -- If no `color` value is present it will defaul to `black`.
-  -- If the `color` value is set to `use-slice` and a value is set in the `color` value of the `slicesFont` prop it will use the `slicesFont.color` value.
-  -- If the `color` value is set to `use-option` it will look for a `fontColor` value in the option object that corresponds to the slice the wheel landed on. If no `fontColor` exists in the landed on option it will use the `slicesFont.color` value. If no `slicesFont.color` value exists it will fall back to `black`.
+- - If no `color` value is present it will defaul to `black`.
+- - If the `color` value is set to `use-slice` and a value is set in the `color` value of the `slicesFont` prop it will use the `slicesFont.color` value.
+- - If the `color` value is set to `use-option` it will look for a `fontColor` value in the option object that corresponds to the slice the wheel landed on. If no `fontColor` exists in the landed on option it will use the `slicesFont.color` value. If no `slicesFont.color` value exists it will fall back to `black`.
