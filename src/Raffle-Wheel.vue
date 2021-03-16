@@ -1,7 +1,12 @@
 <template>
   <div class="raffle-wheel">
-    <button class="raffle-wheel__button" @click="spin" :disabled="blockSpin">
-      Spin
+    <button
+      v-if="!hideButton"
+      class="raffle-wheel__button"
+      @click="spin"
+      :disabled="blockSpin"
+    >
+      {{ buttonText }}
     </button>
     <canvas
       class="raffle-wheel__canvas"
@@ -28,6 +33,11 @@ export default {
   props: {
     options: Array,
     blockSpin: Boolean,
+    hideButton: Boolean,
+    buttonText: {
+      type: String,
+      default: "Spin",
+    },
     slicesFont: {
       type: Object,
       default: {

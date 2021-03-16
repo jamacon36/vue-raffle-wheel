@@ -12,6 +12,11 @@
 //
 //
 //
+//
+//
+//
+//
+//
 
 var script = {
   name: "RaffleWheel",
@@ -28,6 +33,11 @@ var script = {
   props: {
     options: Array,
     blockSpin: Boolean,
+    hideButton: Boolean,
+    buttonText: {
+      type: String,
+      default: "Spin",
+    },
     slicesFont: {
       type: Object,
       default: {
@@ -297,15 +307,17 @@ var __vue_render__ = function() {
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
   return _c("div", { staticClass: "raffle-wheel" }, [
-    _c(
-      "button",
-      {
-        staticClass: "raffle-wheel__button",
-        attrs: { disabled: _vm.blockSpin },
-        on: { click: _vm.spin }
-      },
-      [_vm._v("\n    Spin\n  ")]
-    ),
+    !_vm.hideButton
+      ? _c(
+          "button",
+          {
+            staticClass: "raffle-wheel__button",
+            attrs: { disabled: _vm.blockSpin },
+            on: { click: _vm.spin }
+          },
+          [_vm._v("\n    " + _vm._s(_vm.buttonText) + "\n  ")]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("canvas", {
       ref: "wheel",
